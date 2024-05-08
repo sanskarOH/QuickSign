@@ -31,6 +31,7 @@ function handleMouseMove(e) {
 
 function handleTouchStart(e) {
   if (selectedTool === 'pencil') {
+    console.log('Touch Start:', e.touches);
     startDrawing(e.touches[0]);
     e.preventDefault(); // Prevent default touch action
   }
@@ -38,6 +39,7 @@ function handleTouchStart(e) {
 
 function handleTouchMove(e) {
   if (selectedTool === 'pencil') {
+    console.log('Touch Move:', e.touches);
     draw(e.touches[0]);
     e.preventDefault(); // Prevent default touch action
   }
@@ -57,7 +59,8 @@ function handleMouseOut() {
 
 function startDrawing(e) {
   isDrawing = true;
-  [lastX, lastY] = [e.offsetX, e.offsetY];
+  [lastX, lastY] = [e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop];
+  console.log('Start Drawing:', lastX, lastY);
 }
 
 function draw(e) {
@@ -67,9 +70,10 @@ function draw(e) {
   ctx.lineCap = 'round';
   ctx.beginPath();
   ctx.moveTo(lastX, lastY);
-  ctx.lineTo(e.offsetX, e.offsetY);
+  [lastX, lastY] = [e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop];
+  console.log('Drawing:', lastX, lastY);
+  ctx.lineTo(lastX, lastY);
   ctx.stroke();
-  [lastX, lastY] = [e.offsetX, e.offsetY];
 }
 
 function endDrawing() {
