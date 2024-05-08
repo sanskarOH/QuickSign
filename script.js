@@ -11,6 +11,9 @@ canvas.addEventListener('mousedown', handleMouseDown);
 canvas.addEventListener('mousemove', handleMouseMove);
 canvas.addEventListener('mouseup', handleMouseUp);
 canvas.addEventListener('mouseout', handleMouseOut);
+canvas.addEventListener('touchstart', handleTouchStart);
+canvas.addEventListener('touchmove', handleTouchMove);
+canvas.addEventListener('touchend', handleTouchEnd);
 document.getElementById('resetBtn').addEventListener('click', resetCanvas);
 document.getElementById('downloadBtn').addEventListener('click', downloadImage);
 
@@ -26,7 +29,24 @@ function handleMouseMove(e) {
   }
 }
 
+function handleTouchStart(e) {
+  if (selectedTool === 'pencil') {
+    startDrawing(e.touches[0]);
+  }
+}
+
+function handleTouchMove(e) {
+  if (selectedTool === 'pencil') {
+    draw(e.touches[0]);
+    e.preventDefault(); // Prevent scrolling on touch devices
+  }
+}
+
 function handleMouseUp() {
+  endDrawing();
+}
+
+function handleTouchEnd() {
   endDrawing();
 }
 
