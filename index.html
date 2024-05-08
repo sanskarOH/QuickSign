@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signature Pad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hea">
+    <h1 class="header">Quite Sign</h1>
+    <p>A simple app to get you signatures in png.</p>
+  </div>
+  <div class="container">
+    <canvas id="canvas" width="500" height="300"></canvas>
+    <div class="tools">
+      <button id="resetBtn">Reset</button>
+      <button id="downloadBtn">Download</button>
+      <div class="tool">
+        <span id="pencilIcon" onclick="selectPencil()">✏️</span>
+        <input type="color" id="colorPicker" value="#000000">
+        <input type="range" id="sizeRange" min="1" max="20" value="2">
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
