@@ -6,6 +6,7 @@ let lastY = 0;
 let selectedTool = 'pencil';
 let pencilColor = '#000000';
 let pencilSize = 2;
+let touchEnabled = false; // Flag to toggle drawing on touch
 
 canvas.addEventListener('mousedown', handleMouseDown);
 canvas.addEventListener('mousemove', handleMouseMove);
@@ -30,6 +31,9 @@ function handleMouseMove(e) {
 }
 
 function handleTouchStart(e) {
+  if (!touchEnabled) { // Enable touch on first touch event
+    touchEnabled = true;
+  }
   if (selectedTool === 'pencil') {
     console.log('Touch Start:', e.touches);
     startDrawing(e.touches[0]);
