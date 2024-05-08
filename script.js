@@ -32,13 +32,14 @@ function handleMouseMove(e) {
 function handleTouchStart(e) {
   if (selectedTool === 'pencil') {
     startDrawing(e.touches[0]);
+    e.preventDefault(); // Prevent default touch action
   }
 }
 
 function handleTouchMove(e) {
   if (selectedTool === 'pencil') {
     draw(e.touches[0]);
-    e.preventDefault(); // Prevent scrolling on touch devices
+    e.preventDefault(); // Prevent default touch action
   }
 }
 
